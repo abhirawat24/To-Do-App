@@ -1,4 +1,10 @@
+import{ useState } from "react";
+
+
 export function CreateTodo() {
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+
     return<div>
         
         <input style={{
@@ -12,6 +18,14 @@ export function CreateTodo() {
         <button style={{
             padding: "10px",
             margin: "10px",
+        }} onClick={()=>{
+            fetch("http://localhost:3000/todos", {
+                method: "POST",
+                body: JSON.stringify({
+                    title: title,
+                    description: description
+                })
+            })
         }}> Add a todo</button> 
     </div>
 }
